@@ -56,6 +56,7 @@ pipeline {
                          docker_image = docker.build "${IMAGE_NAME}"
                      }
                      docker.withRegistry('',DOCKER_PASS) {
+                         sh 'docker tag "${IMAGE_NAME}" "${IMAGE_NAME}" + ":" + "${IMAGE_TAG}"'
                          docker_image.push()
                      }
                  }
